@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
@@ -15,13 +15,37 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, CarruselComponent, 
-    FooterComponent, RouterModule, UbicacionComponent, NosotrosComponent, 
-    ServiciosComponent, RedesComponent,ResponsablesComponent, MatCardModule, 
-    VideoCardsComponent, EjerciciosComponent, DashboardComponent],
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    NavbarComponent,
+    CarruselComponent,
+    FooterComponent,
+    UbicacionComponent,
+    NosotrosComponent,
+    ServiciosComponent,
+    RedesComponent,
+    ResponsablesComponent,
+    MatCardModule,
+    VideoCardsComponent,
+    EjerciciosComponent,
+    DashboardComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'practicaLibreria';
+
+  ngAfterViewInit(): void {
+    document.body.classList.remove('modo-accesible');
+
+    const toggleBtn = document.getElementById('accesibilidad-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('modo-accesible');
+      });
+    }
+  }
 }
