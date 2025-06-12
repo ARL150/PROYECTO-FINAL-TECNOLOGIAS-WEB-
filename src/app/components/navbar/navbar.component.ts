@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthServiceService } from '../../services/auth-service.service';
+import { AuthService } from '../../auth/data-access/auth.service'; 
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,19 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   @ViewChild('sideMenu') sideMenu!: ElementRef;
   @ViewChild('menuToggle') menuToggle!: ElementRef;
 
-  constructor(private authService: AuthServiceService) {}  
+  userName: string | null = null;
+  userRole: string | null = null;
+
+  constructor(private authService: AuthServiceService,private authS: AuthService) {
+     this.authS.userName$.subscribe((name) => {
+      this.userName = name;
+    });
+
+    this.authS.userRole$.subscribe((role) => {
+      this.userRole = role;
+      console.log('Rol del usuario:', role);
+    });
+  }  
 
   ngOnInit() {
     this.usuarioActual = localStorage.getItem('usuarioActual');
@@ -49,5 +62,9 @@ export class NavbarComponent implements AfterViewInit, OnInit {
 
   cerrarSesion() {
     this.authService.logout(); 
+  }
+
+  logOut() {
+    this.authS.cerrarSesion();
   }
 }
