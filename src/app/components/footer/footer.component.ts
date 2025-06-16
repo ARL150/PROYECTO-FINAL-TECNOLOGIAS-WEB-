@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CapitalizarPipe } from '../../pipes/capitalizar.pipe';
 
 @Component({
   selector: 'app-footer',

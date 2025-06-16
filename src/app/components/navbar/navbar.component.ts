@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthServiceService } from '../../services/auth-service.service';
+import { CapitalizarPipe } from '../../pipes/capitalizar.pipe';
 
 @Component({
   selector: 'app-navbar',
