@@ -14,12 +14,12 @@
     <!-- Navegación -->
     <nav class="navbar d-flex align-items-center w-100 justify-content-between">
       <ul class="nav" id="mainMenu">
-        <li><a class="nav-link" href="#mainMenu">Inicio</a></li>
-        <li><a class="nav-link" href="#about">¿Quiénes somos?</a></li>
-        <li><a class="nav-link" href="#services">Nuestros servicios</a></li>
-        <li><a class="nav-link" href="#branches">Sucursales</a></li>
-        <li><a class="nav-link" href="#social">Redes Sociales</a></li>
-        <li><a class="nav-link" href="#creditos">Responsables</a></li>
+        <li><a class="nav-link" href="#mainMenu">{{ 'inicio' | capitalizar }}</a></li>
+        <li><a class="nav-link" href="#about">{{ '¿quiénes somos?' | capitalizar }}</a></li>
+        <li><a class="nav-link" href="#services">{{ 'nuestros servicios' | capitalizar }}</a></li>
+        <li><a class="nav-link" href="#branches">{{ 'sucursales' | capitalizar }}</a></li>
+        <li><a class="nav-link" href="#social">{{ 'redes sociales' | capitalizar}}</a></li>
+        <li><a class="nav-link" href="#creditos">{{ 'responsables' | capitalizar }} </a></li>
        
         @if(userName){
          <a class="nav-link" [routerLink]="['/micuenta']">

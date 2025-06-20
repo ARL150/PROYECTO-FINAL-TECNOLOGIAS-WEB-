@@ -3,11 +3,12 @@ import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { AuthService } from '../../auth/data-access/auth.service'; 
+import { CapitalizarPipe } from '../../pipes/capitalizar.pipe';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule],  
+  imports: [CommonModule, RouterModule, CapitalizarPipe],  
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
