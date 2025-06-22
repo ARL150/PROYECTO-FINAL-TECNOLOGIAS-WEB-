@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';Add commentMore actions
+import { Component, AfterViewInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
