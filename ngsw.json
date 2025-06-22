@@ -1,0 +1,127 @@
+{
+  "configVersion": 1,
+  "timestamp": 1750556921703,
+  "index": "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/chunk-6KIBPBIL.js",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/chunk-JY42GNXY.js",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/chunk-SNZYAC4E.js",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/chunk-XDOLDQHY.js",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/favicon.ico",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/index.html",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/main-C576B25Y.js",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/manifest.webmanifest",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/polyfills-B6TNHZQ6.js",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/styles-R7UBG434.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-128x128.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-144x144.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-152x152.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-192x192.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-384x384.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-512x512.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-72x72.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-96x96.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/1.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/2.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/3.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/4.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/5.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/6.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/abraham.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/abrahamR.jpg",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/detener.jpg",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/logo.jpg",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/logo.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/luis.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/marco.jpeg",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/pausando.jpg",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/pepe.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/play.png",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/ricardo.jpg",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/voz/detener.jpg",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/voz/pausando.jpg",
+        "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/voz/play.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/chunk-6KIBPBIL.js": "a2fa403395ec547b178ee714263c0f5ba76d0fd9",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/chunk-JY42GNXY.js": "756ecb53444411bcdf13067181ee4796d8430cde",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/chunk-SNZYAC4E.js": "62b03c78e6de60b553cae346cf0d979174600240",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/chunk-XDOLDQHY.js": "425d884a1d1f377dce672f183d94d682177893e1",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-192x192.png": "61976314a6e3c8c504ad05a9985841a282cfb174",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-512x512.png": "c009d8ff7f3db0c2178066708adf0e2462f91d37",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/1.png": "ec932e62af24381d3c6e9081046d78a715264584",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/2.png": "00450158e4b0bbbae8666e6599e45e6d7b8f80a9",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/3.png": "941845dec272ff622b44029f8e17f729276f1dfd",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/4.png": "bad31403d9c98e83b650e0d2c01f7a56ad2f4808",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/5.png": "3349b88f436c8f56fef9dd85c9baeb7a5122c15e",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/CARRUSEL/6.png": "804c23e2150f5d7c5bf67f15bdd65bc4c027189a",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/abraham.png": "d0a037227ee9fb9526d3b7a0b49b4fbbff294f8f",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/abrahamR.jpg": "99750ea5569a388b27f59d1d3dc8b7ca62d33e95",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/detener.jpg": "0751ea6676040df331932166db9f51f29e4c3b9a",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/logo.jpg": "f637d13e401a22c5e456538901a23bff4e1717c4",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/logo.png": "2a53d6f6f41ec1011e142d93e9c7f5b5cff1c679",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/luis.png": "66a0f3ba99edd711a3e81b532dd057a157aaf780",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/marco.jpeg": "82bc6402dec306200048458a1ab4d7593cc766e8",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/pausando.jpg": "38c27401ea27ba551773200bd4f834522c43d8c2",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/pepe.png": "f55bbc5f1bd784532323d1cf7682992e7d36b8ae",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/play.png": "781df40268c7e121402e5bab68bdd58dc60f9cff",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/Responsables/ricardo.jpg": "10009fe07b0458b5b3d634a150818e15955c2f3f",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/voz/detener.jpg": "0751ea6676040df331932166db9f51f29e4c3b9a",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/voz/pausando.jpg": "38c27401ea27ba551773200bd4f834522c43d8c2",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/img/voz/play.png": "781df40268c7e121402e5bab68bdd58dc60f9cff",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/index.html": "e8a4075497ceed1d476f348b9af9d9bd429707c1",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/main-C576B25Y.js": "4a4953fdfcc80951db9695277d8aef5300967185",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/manifest.webmanifest": "2a1455c02bf4635537720bdf5dff4aa76393bc5b",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/polyfills-B6TNHZQ6.js": "bf76ac291d7f51c1139b7edcf86b359a30c08c64",
+    "/PROYECTO-FINAL-TECNOLOGIAS-WEB-/styles-R7UBG434.css": "53c7dc2a16946dde813009d3553467a120b99e4d"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
