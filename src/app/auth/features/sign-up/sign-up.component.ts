@@ -37,13 +37,17 @@ export default class SignUpComponent {
   recaptchaVerifier!: RecaptchaVerifier;
 
   // Tipamos el FormGroup con los tipos correctos
-form: FormGroup = this._formBuilder.group({
-  email: this._formBuilder.control<string>('', [Validators.required, Validators.email]),
-  nombre: this._formBuilder.control<string>('', [Validators.required]),
-  password: this._formBuilder.control<string>('', [Validators.required, ContraValidator])  // 👈 agregado aquí
-});
-
-
+form: FormGroup = this._formBuilder.group(
+  {
+    email: this._formBuilder.control<string>('', [Validators.required, Validators.email]),
+    nombre: this._formBuilder.control<string>('', [Validators.required]),
+    password: this._formBuilder.control<string>('', [Validators.required, ContraValidator]),
+    confirmPassword: this._formBuilder.control<string>('', [Validators.required]),
+  },
+  {
+    validators: matchContra('password', 'confirmPassword'),
+  }
+);
   ngOnInit():void{
     this.initRecaptcha();
   }
@@ -98,6 +102,7 @@ async submit() {
     this.router.navigate(['/home']);
   } catch (error) {
     alert("error");
+    console.log(error);
   }
 }
 

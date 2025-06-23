@@ -20,6 +20,8 @@ import { PhoneComponent } from './components/phone/phone.component';
 import { MicuentaComponent } from './components/micuenta/micuenta.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { AuthComponent } from './auth/features/auth/auth.component';
+import { HomeComponent } from './components/home/home.component';
+import { GraficosComponent } from './components/graficos/graficos.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,6 +30,7 @@ export const routes: Routes = [
   { path: 'servicio', component: ServiciosComponent },
   { path: 'responsables', component: ResponsablesComponent },
   { path: 'form', component: FormComponent },
+  {path: 'home', component: HomeComponent},
   { path: 'redes/:id', component: RedesComponent },
   { path: 'nosotros', component: NosotrosComponent },
   { path: 'footer', component: FooterComponent },
@@ -42,6 +45,7 @@ export const routes: Routes = [
   { path: 'micuenta', component: MicuentaComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'sesion', component: AuthComponent },
+  { path: 'graficos', component: GraficosComponent },
 
   {
     path: 'auth',

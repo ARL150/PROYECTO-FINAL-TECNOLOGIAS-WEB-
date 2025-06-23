@@ -15,8 +15,6 @@ body {
   padding-top: 60px; /* Baja el contenedor */
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  overflow: hidden;
-
 }
 
 .registro-container {

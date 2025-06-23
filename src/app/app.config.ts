@@ -2,12 +2,11 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { importProvidersFrom, isDevMode } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { routes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { provideServiceWorker } from '@angular/service-worker';
 
 
 const firebaseConfig = {
@@ -22,15 +21,12 @@ const firebaseConfig = {
 };
 
 export const appConfig: ApplicationConfig = {
-   providers: [
+  providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-     importProvidersFrom(HttpClientModule, FormsModule), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          })
+    importProvidersFrom(HttpClientModule, FormsModule)
   ]
 };
