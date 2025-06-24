@@ -18,6 +18,9 @@ import {
   RecaptchaVerifier
 } from 'firebase/auth';
 
+// Import SweetAlert2
+import Swal from 'sweetalert2';
+
 interface SignInFormValue {
   email: string;
   password: string;
@@ -26,7 +29,7 @@ interface SignInFormValue {
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, NgIf,CommonModule],
+  imports: [ReactiveFormsModule, RouterModule, NgIf, CommonModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
@@ -36,12 +39,11 @@ export default class SignInComponent implements OnInit {
   private _authService = inject(AuthService);
   private auth = getAuth();
 
-form: FormGroup = this._formBuilder.group({
-  email: this._formBuilder.control<string>('', [Validators.required, Validators.email]),
-  nombre: this._formBuilder.control<string>('', [Validators.required]),
-  password: this._formBuilder.control<string>('', [Validators.required, ContraValidator])
-});
-
+  form: FormGroup = this._formBuilder.group({
+    email: this._formBuilder.control<string>('', [Validators.required, Validators.email]),
+    nombre: this._formBuilder.control<string>('', [Validators.required]),
+    password: this._formBuilder.control<string>('', [Validators.required, ContraValidator])
+  });
 
   captchaResuelto: boolean = false;
   recaptchaVerifier!: RecaptchaVerifier;
@@ -53,72 +55,111 @@ form: FormGroup = this._formBuilder.group({
   }
 
   initRecaptcha() {
-  if (this.recaptchaVerifier) {
-    this.recaptchaVerifier.clear();
-  }
-
-  this.recaptchaVerifier = new RecaptchaVerifier(
-    this.auth, // ✅ auth primero
-    'recaptcha-container',
-    {
-      size: 'normal',
-      callback: (response: any) => {
-        console.log('reCAPTCHA resuelto:', response);
-        this.captchaResuelto = true;
-      },
-      'expired-callback': () => {
-        console.warn('reCAPTCHA expirado');
-        this.captchaResuelto = false;
-      }
+    if (this.recaptchaVerifier) {
+      this.recaptchaVerifier.clear();
     }
-  );
 
-  this.recaptchaVerifier.render().then((widgetId) => {
-    console.log('reCAPTCHA renderizado con ID:', widgetId);
-  });
-}
+    this.recaptchaVerifier = new RecaptchaVerifier(
+      this.auth,
+      'recaptcha-container',
+      {
+        size: 'normal',
+        callback: (response: any) => {
+          console.log('reCAPTCHA resuelto:', response);
+          this.captchaResuelto = true;
+        },
+        'expired-callback': () => {
+          console.warn('reCAPTCHA expirado');
+          this.captchaResuelto = false;
+          Swal.fire({
+            icon: 'warning',
+            title: 'reCAPTCHA expirado',
+            text: 'El reCAPTCHA ha expirado, por favor complétalo nuevamente.',
+          });
+        }
+      }
+    );
 
+    this.recaptchaVerifier.render().then((widgetId) => {
+      console.log('reCAPTCHA renderizado con ID:', widgetId);
+    });
+  }
 
   async submit() {
-  if (this.form.invalid) return;
+    if (this.form.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Formulario inválido',
+        text: 'Por favor, completa todos los campos correctamente.'
+      });
+      return;
+    }
 
-  const { email, password } = this.form.value as SignInFormValue;
-  if (!email.trim() || !password.trim()) {
-    alert("Por favor, completa todos los campos.");
-    return;
+    const { email, password } = this.form.value as SignInFormValue;
+    if (!email.trim() || !password.trim()) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Campos vacíos',
+        text: 'Por favor, completa todos los campos.'
+      });
+      return;
+    }
+
+    if (!this.captchaResuelto) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Captcha requerido',
+        text: 'Por favor, completa el reCAPTCHA.'
+      });
+      return;
+    }
+
+    try {
+      await this._authService.signIn({ email, password });
+      Swal.fire({
+        icon: 'success',
+        title: '¡Bienvenido!',
+        text: 'Inicio de sesión exitoso.',
+        timer: 1500,
+        showConfirmButton: false
+      });
+      this.router.navigate(['/home']);
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error de autenticación',
+        text: 'Credenciales incorrectas o error en autenticación.'
+      });
+
+      this.recaptchaVerifier.clear();
+      this.initRecaptcha();
+      this.captchaResuelto = false;
+
+      await this._authService.incrementarIntentosPorEmail(email);
+    }
+
+    this.form.reset();
   }
-
-  if (!this.captchaResuelto) {
-    alert("Por favor, completa el reCAPTCHA.");
-    return;
-  }
-
-  try {
-    await this._authService.signIn({ email, password });
-    this.router.navigate(['/home']);
-  } catch (error) {
-    console.error(error);
-    //alert("Credenciales incorrectas o error en autenticación.");
-    
-    // Intenta reiniciar el reCAPTCHA si el login falla
-    this.recaptchaVerifier.clear();
-    this.initRecaptcha(); // vuelve a mostrarlo
-    this.captchaResuelto = false;
-
-    await this._authService.incrementarIntentosPorEmail(email);
-  }
-
-  this.form.reset();
-}
-
 
   async conGoogle() {
     try {
       const result = await this._authService.signInWithGoogle();
       console.log('Usuario autenticado con Google:', result.user);
+      Swal.fire({
+        icon: 'success',
+        title: 'Autenticación con Google exitosa',
+        timer: 1500,
+        showConfirmButton: false
+      });
       this.router.navigate(['/home']);
     } catch (error) {
       console.error('Error en autenticación con Google:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error en autenticación con Google.'
+      });
     }
   }
 }

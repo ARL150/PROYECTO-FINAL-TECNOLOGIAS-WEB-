@@ -11,8 +11,10 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { signInWithEmailAndPassword, updatePassword } from 'firebase/auth';
 import { CommonModule } from '@angular/common';
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
+import Swal from 'sweetalert2';
+
 interface ChangePasswordFormValue {
   email: string;
   password: string;
@@ -21,12 +23,12 @@ interface ChangePasswordFormValue {
 @Component({
   selector: 'app-change',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule,CommonModule],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule],
   templateUrl: './change.component.html',
   styleUrl: './change.component.css'
 })
 export class ChangeComponent {
-  private  firestore = getFirestore();
+  private firestore = getFirestore();
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
   private _auth = inject(AuthService).auth; // asegúrate que tienes 'auth' expuesto en el servicio
@@ -43,7 +45,11 @@ export class ChangeComponent {
 
   async submit() {
     if (this.form.invalid || this.newPasswordControl.invalid || this.confirmPasswordControl.invalid) {
-      alert('Por favor, completa todos los campos correctamente.');
+      await Swal.fire({
+        icon: 'warning',
+        title: 'Campos incompletos',
+        text: 'Por favor, completa todos los campos correctamente.'
+      });
       return;
     }
 
@@ -52,33 +58,57 @@ export class ChangeComponent {
     const confirmarClave = this.confirmPasswordControl.value;
 
     if (!email.trim() || !password.trim() || !nuevaClave || !confirmarClave) {
-      alert("Todos los campos son obligatorios.");
+      await Swal.fire({
+        icon: 'warning',
+        title: 'Campos obligatorios',
+        text: 'Todos los campos son obligatorios.'
+      });
       return;
     }
 
     if (nuevaClave.length < 6 || confirmarClave.length < 6) {
-      alert("La nueva contraseña debe tener al menos 6 caracteres.");
+      await Swal.fire({
+        icon: 'warning',
+        title: 'Contraseña muy corta',
+        text: 'La nueva contraseña debe tener al menos 6 caracteres.'
+      });
       return;
     }
 
     if (nuevaClave !== confirmarClave) {
-      alert("Las nuevas contraseñas no coinciden.");
+      await Swal.fire({
+        icon: 'error',
+        title: 'Contraseñas no coinciden',
+        text: 'Las nuevas contraseñas no coinciden.'
+      });
       return;
     }
 
     try {
       const credentials = await signInWithEmailAndPassword(this._auth, email, password);
       await updatePassword(credentials.user, nuevaClave);
-     // Obtener la referencia al documento del usuario (ajusta la ruta según tu BD)
+
+      // Obtener la referencia al documento del usuario (ajusta la ruta según tu BD)
       const usuarioDocRef = doc(this.firestore, "usuarios", credentials.user.uid);
-  
-  // Actualizar campo intentos a 0
+
+      // Actualizar campo intentos a 0
       await updateDoc(usuarioDocRef, { intentos: 0 });
-      alert('Contraseña cambiada exitosamente.');
+
+      await Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Contraseña cambiada exitosamente.'
+      });
+
       this.router.navigate(['/home']);
     } catch (error) {
       console.error('Error al cambiar la contraseña:', error);
-      alert('No se pudo cambiar la contraseña. Verifica tus datos.');
+      await Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo cambiar la contraseña. Verifica tus datos.'
+      });
+
       await this._authService.incrementarIntentosPorEmail(email);
     }
 
@@ -86,5 +116,4 @@ export class ChangeComponent {
     this.newPasswordControl.reset();
     this.confirmPasswordControl.reset();
   }
-
 }

@@ -15,7 +15,75 @@ import { signal } from '@angular/core';
 
 @Component({
   selector: 'app-formulario2',
-  templateUrl: './formulario2.component.html',
+  template:`
+  <body>
+  <div class="registro-container">
+    <h2>Agenda tu entrenamiento</h2>
+
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()" id="todo">
+      <!-- Entrenamiento -->
+      <div class="container-input">
+        <i class='bx bx-dumbbell'></i>
+        <select formControlName="entrenamiento"
+          [class.invalid]="formulario.get('entrenamiento')?.touched && formulario.get('entrenamiento')?.invalid">
+          <option value="">Selecciona entrenamiento</option>
+          <option *ngFor="let e of entrenamientos" [value]="e">{{ e }}</option>
+        </select>
+      </div>
+      @if (formulario.get('entrenamiento')?.touched && formulario.get('entrenamiento')?.invalid) {
+        <div class="error">
+          <small>Campo obligatorio</small>
+        </div>
+      }
+
+      <!-- Fecha -->
+      <div class="container-input">
+        <i class='bx bx-calendar'></i>
+        <input type="date" formControlName="fecha" [min]="minFecha"
+          [class.invalid]="formulario.get('fecha')?.touched && formulario.get('fecha')?.invalid" />
+      </div>
+      @if (formulario.get('fecha')?.touched && formulario.get('fecha')?.invalid) {
+        <div class="error">
+          <small>Campo obligatorio</small>
+        </div>
+      }
+
+      <!-- Turno -->
+      <div class="container-input">
+        <i class='bx bx-time'></i>
+        <select formControlName="turno"
+          [class.invalid]="formulario.get('turno')?.touched && formulario.get('turno')?.invalid">
+          <option value="">Selecciona turno</option>
+          <option value="Mañana">Mañana</option>
+          <option value="Tarde">Tarde</option>
+          <option value="Noche">Noche</option>
+        </select>
+      </div>
+      @if (formulario.get('turno')?.touched && formulario.get('turno')?.invalid) {
+        <div class="error">
+          <small>Campo obligatorio</small>
+        </div>
+      }
+
+      <br>
+
+      <!-- Botón -->
+      <button type="submit" class="button" [disabled]="formulario.invalid">Enviar</button>
+    </form>
+
+    @if (loading()) {
+      <p>⏳ Enviando formulario...</p>
+    }
+
+    @if (enviado) {
+      <div>
+        <p>✅ Tómale captura, es tu boleto al evento</p>
+        <app-qr-view [clase]="clase" [fecha]="fecha"></app-qr-view>
+      </div>
+    }
+  </div>
+</body>
+`,
   styleUrls: ['./formulario2.component.css'],  // CORRECCIÓN aquí
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, QrViewComponent]

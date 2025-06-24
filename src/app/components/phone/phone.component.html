@@ -8,9 +8,13 @@
       <input type="tel" [(ngModel)]="phoneNumber" placeholder="Número de teléfono"
         [class.invalid]="!esNumeroValido() && phoneNumber" />
     </div>
-    <div class="error" *ngIf="!esNumeroValido() && phoneNumber">
+
+    @if(!esNumeroValido() && phoneNumber){
+        <div class="error">
       <small>Número inválido. Verifica el formato.</small>
     </div>
+    }
+    
 
     <!-- Código OTP -->
     <div class="container-input">

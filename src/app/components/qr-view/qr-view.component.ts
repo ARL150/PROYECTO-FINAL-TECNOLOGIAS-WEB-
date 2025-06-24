@@ -11,12 +11,13 @@ import { AuthService } from '../../auth/data-access/auth.service';
   standalone: true,
   imports: [QRCodeComponent, CommonModule],
   template: `
-    <div *ngIf="qrValue; else loading" class="qr-container">
-      <qrcode [qrdata]="qrValue!" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-    </div>
-    <ng-template #loading>
+    @if (qrValue) {
+      <div class="qr-container">
+        <qrcode [qrdata]="qrValue!" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+    } @else {
       <p>Cargando QR...</p>
-    </ng-template>
+    }
   `,
   styles: [`
     :host {

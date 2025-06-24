@@ -14,7 +14,69 @@ import { QrViewComponent } from '../qr-view/qr-view.component';
 @Component({
   selector: 'app-formulario3',
   standalone: true,
-  templateUrl: './formulario3.component.html',
+  template:`
+  <body>
+  <div class="registro-container">
+    <h2>Registrar asistencia</h2>
+
+    <form (ngSubmit)="guardar()" #form="ngForm" class="formulario-asistencia">
+
+      <!-- Clase grupal -->
+      <div class="container-input">
+        <i class='bx bx-dumbbell'></i>
+        <select [(ngModel)]="nuevo.clase" name="clase" required
+          [class.invalid]="form.submitted && !nuevo.clase">
+          <option value="">Selecciona clase</option>
+          <option *ngFor="let c of clases" [value]="c">{{ c }}</option>
+        </select>
+      </div>
+      @if (form.submitted && !nuevo.clase) {
+        <div class="error">
+          <small>La clase es obligatoria.</small>
+        </div>
+      }
+
+      <!-- Fecha -->
+      <div class="container-input">
+        <i class='bx bx-calendar'></i>
+        <input type="date" [(ngModel)]="nuevo.fecha" name="fecha" required
+          [class.invalid]="form.submitted && !nuevo.fecha" />
+      </div>
+      @if (form.submitted && !nuevo.fecha) {
+        <div class="error">
+          <small>La fecha es obligatoria.</small>
+        </div>
+      }
+
+      <!-- Hora -->
+      <div class="container-input">
+        <i class='bx bx-time-five'></i>
+        <input type="time" [(ngModel)]="nuevo.hora" name="hora" required
+          [class.invalid]="form.submitted && !nuevo.hora" />
+      </div>
+      @if (form.submitted && !nuevo.hora) {
+        <div class="error">
+          <small>La hora es obligatoria.</small>
+        </div>
+      }
+
+      <!-- Botón -->
+      <button class="button" type="submit">Guardar asistencia</button>
+    </form>
+
+    @if (loading()) {
+      <p>⏳ Enviando formulario...</p>
+    }
+
+    @if (enviado) {
+      <div>
+        <p>✅ Tómale captura, es tu boleto al evento</p>
+        <app-qr-view [clase]="clase" [fecha]="fecha"></app-qr-view>
+      </div>
+    }
+  </div>
+</body>
+`,
   styleUrls: ['./formulario3.component.css'],
   imports: [FormsModule, CommonModule, HttpClientModule,QrViewComponent]
 })

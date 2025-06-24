@@ -1,8 +1,6 @@
-<div *ngIf="nombre && role">
+@if(nombre && role){
   <p>Hola, {{ nombre }}.</p>
   <p>Tu rol es: {{ role }}</p>
-</div>
-
-<div *ngIf="!nombre || !role">
+}@else{
   <p>Cargando datos...</p>
-</div>
+}

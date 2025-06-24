@@ -15,6 +15,8 @@ import {
   serverTimestamp
 } from '@angular/fire/firestore';
 import { getFirestore, addDoc } from "firebase/firestore";
+import Swal from 'sweetalert2'; // Importar SweetAlert
+
 export interface User {
   email: string;
   password: string;
@@ -73,7 +75,25 @@ export class AuthService {
     });
   }
 
-
+  // Función para mostrar alertas con el estilo personalizado
+  private mostrarAlerta(titulo: string, texto: string, icono: 'warning' | 'error' | 'success' = 'warning') {
+    Swal.fire({
+      title: titulo,
+      text: texto,
+      icon: icono,
+      background: '#222',  // Fondo oscuro
+      color: '#fff',       // Texto blanco
+      confirmButtonColor: '#ff7f00', // Botón naranja
+      iconColor: '#ff7f00',          // Color del ícono naranja
+      confirmButtonText: 'Aceptar',
+      customClass: {
+        container: 'swal-dark-container',
+        popup: 'swal-dark-popup',
+        title: 'swal-dark-title',
+        htmlContainer: 'swal-dark-text'
+      }
+    });
+  }
 
   //////////////admin
   private userRoleSubject = new BehaviorSubject<string | null>(null);
@@ -165,7 +185,12 @@ export class AuthService {
       console.log(`Intentos para ${email}: ${nuevosIntentos}`);
 
       if (nuevosIntentos >= 3) {
-        alert('¡Este usuario ha superado el límite de intentos!');
+        // Reemplazar alert con SweetAlert
+        this.mostrarAlerta(
+          '¡Límite excedido!', 
+          'Este usuario ha superado el límite de intentos',
+          'warning'
+        );
       }
     } else {
       console.warn(`No se encontró un usuario con el email: ${email}`);
@@ -233,9 +258,14 @@ export class AuthService {
     const usuarioData = usuarioDoc.data();
 
     if (usuarioData['intentos'] >= 3) {
-      alert("Demasiados intentos, cambia tu clave para poder ingresar");
-      throw new Error('Demasiados intentos fallidos. Intenta más tarde.');
-    }
+        // Reemplazar alert con SweetAlert
+        this.mostrarAlerta(
+          'Cuenta bloqueada', 
+          'Demasiados intentos, cambia tu clave para poder ingresar',
+          'warning'
+        );
+        throw new Error('Demasiados intentos fallidos. Intenta más tarde.');
+      }
 
     try {
       const credentials = await signInWithEmailAndPassword(
@@ -259,7 +289,11 @@ export class AuthService {
         ultimoIntento: serverTimestamp()
       });
 
-      alert("datos incorrectos");
+      this.mostrarAlerta(
+          'Error de autenticación', 
+          'Correo o contraseña incorrectos',
+          'error'
+        );
       throw new Error('Correo o contraseña incorrectos');
     }
   }
